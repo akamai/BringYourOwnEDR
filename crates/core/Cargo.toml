@@ -1,0 +1,22 @@
+[package]
+name = "pplsystem_core"
+description = "Shared IRundown injection primitive, COM secret/context locator and dump parsers"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "pplsystem_core"
+path = "src/lib.rs"
+
+[dependencies]
+anyhow.workspace = true
+byteorder.workspace = true
+endian_codec.workspace = true
+memmap2.workspace = true
+pdb.workspace = true
+pe-parser.workspace = true
+symbolic.workspace = true
+sysinfo.workspace = true
+ureq.workspace = true
+windows.workspace = true

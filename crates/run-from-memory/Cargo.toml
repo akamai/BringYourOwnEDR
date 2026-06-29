@@ -1,0 +1,18 @@
+[package]
+name = "run-from-memory"
+description = "Protects and executes a previously-mapped image inside a target process via IRundown"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "shellcode"
+path = "src/main.rs"
+
+[dependencies]
+pplsystem_core.workspace = true
+anyhow.workspace = true
+clap.workspace = true
+pe-parser.workspace = true
+sysinfo.workspace = true
+windows.workspace = true

@@ -1,0 +1,71 @@
+# PPLSystem — Cargo workspace
+#
+# Two thin binary crates (`pplsystem.exe`, `shellcode.exe`) share a single
+# library crate (`pplsystem_core`) that holds the IRundown injection primitive,
+# the COM secret/context locator, the RPCSS/OXID walker and the dump parsers.
+#
+# This replaces the previous layout where `map_exe` and `run_from_memory` each
+# vendored a byte-identical copy of the whole `irundown`/`kdmp`/`dmp` tree.
+
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+    "crates/map-exe",
+    "crates/run-from-memory",
+    "crates/endian_codec",
+    "crates/test-target",
+    "crates/exec-test",
+]
+
+[workspace.package]
+version = "0.2.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/your-org/pplsystem"
+
+# Shared dependency versions. Member crates opt in with `<dep>.workspace = true`.
+[workspace.dependencies]
+pplsystem_core = { path = "crates/core" }
+anyhow = "1.0"
+byteorder = "1.5.0"
+clap = { version = "4.5.4", features = ["derive"] }
+endian_codec = { path = "crates/endian_codec" }
+memmap2 = "0.9.4"
+pdb = "0.8.0"
+pe-parser = "0.5.1"
+symbolic = "12.8.0"
+sysinfo = "0.30.7"
+ureq = "2.9.6"
+windows = { version = "0.52.0", features = [
+    "implement",
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_Storage",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Com",
+    "Win32_System_Com_Marshal",
+    "Win32_System_Diagnostics_Debug",
+    "Win32_System_Kernel",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Memory",
+    "Win32_System_ProcessStatus",
+    "Win32_System_Rpc",
+    "Win32_System_Threading",
+    "Win32_System_WindowsProgramming",
+    "Win32_UI",
+    "Win32_UI_Shell",
+    "Wdk_Foundation",
+    "Wdk_Storage",
+    "Wdk_Storage_FileSystem",
+    "Wdk_System",
+    "Wdk_System_SystemServices",
+] }
+
+# Smaller, faster release binaries for distribution.
+[profile.release]
+opt-level = 2
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"

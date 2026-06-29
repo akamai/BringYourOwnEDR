@@ -1,0 +1,21 @@
+# Vendored fork of endian_codec 0.1.1 (by Sylwester Rąpała, MIT/Apache-2.0).
+#
+# crates.io only publishes up to 0.1.1, which does NOT implement the codec
+# traits for the platform-sized `usize`/`isize`. The PPLSystem structs use
+# `usize`/`isize` fields, so this local copy adds those two impls (see the two
+# extra `impl_codec_for_primitives!` lines in src/lib.rs). The derive macro is
+# still pulled unmodified from crates.io.
+[package]
+name = "endian_codec"
+description = "(De/En)code rust types as packed bytes — local fork adding usize/isize impls"
+version = "0.1.2"
+edition = "2018"
+license = "Apache-2.0 OR MIT"
+authors = ["Sylwester Rąpała <sylwesterrapala@outlook.com>"]
+
+[dependencies]
+endian_codec_derive = { version = "0.1", optional = true }
+
+[features]
+default = ["derive"]
+derive = ["endian_codec_derive"]

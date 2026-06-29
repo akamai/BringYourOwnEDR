@@ -1,0 +1,29 @@
+# Rust build output
+/target/
+Cargo.lock.bak
+
+# Cached cdb path
+.cdbpath
+
+# Memory dumps, debugger symbols, run logs, scratch
+*.dmp
+*.pdb
+*.log
+*_output.txt
+inject_proof.txt
+pplsystem_shellcode_*.bin
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.vs/
+.vscode/
+*.user
+Thumbs.db
+desktop.ini
+
+# NOTE: the executables (pe2shc.exe, pplsystem.exe, shellcode.exe,
+# test-target.exe, target.exe) are intentionally committed so the PoC is
+# runnable out of the box. Rebuild them any time with ./build.ps1.

@@ -1,0 +1,14 @@
+[package]
+name = "exec-test"
+description = "Local in-process harness: SEC_IMAGE-map target.exe and run a thread at its entry"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "exec-test"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+windows.workspace = true

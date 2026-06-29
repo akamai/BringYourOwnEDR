@@ -1,0 +1,18 @@
+[package]
+name = "map-exe"
+description = "Maps an unsigned PE image into a target process via IRundown COM remoting"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "pplsystem"
+path = "src/main.rs"
+
+[dependencies]
+pplsystem_core.workspace = true
+anyhow.workspace = true
+clap.workspace = true
+pe-parser.workspace = true
+sysinfo.workspace = true
+windows.workspace = true
